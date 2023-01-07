@@ -69,7 +69,9 @@ public class MemberDelete extends JFrame implements ActionListener{
 		if (btnCancle==obj) {
 			dispose();
 		}else if (btnDelete == obj) {
-			
+			String num = tf.getText();
+			DBbook db = new DBbook();
+			db.memberDelete(num);
 		}
 		
 	}

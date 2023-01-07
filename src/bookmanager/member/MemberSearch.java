@@ -12,13 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+import bookmanager.member.MemberList;
 import bookmanager.DBbook;
 
 public class MemberSearch extends JFrame implements ActionListener{
 	private JButton btnSearch,btnCancle;
 	private JTextField tf;
-	MemberList memberlist;
+	
 
 	public MemberSearch(String title) {
 		setTitle(title);
@@ -71,8 +71,9 @@ public class MemberSearch extends JFrame implements ActionListener{
 		}else if (btnSearch == obj) {
 			String num = tf.getText();
 			DBbook db = new DBbook();
-			db.memberSearch(memberlist, num);
+			db.memberSearch(MemberList.class, num);
 			JOptionPane.showMessageDialog(null,"검색이 완료되었습니다.","메세지",JOptionPane.INFORMATION_MESSAGE);
+			//MemberList ml = new MemberList("회원목록");
 		}
 		
 	}

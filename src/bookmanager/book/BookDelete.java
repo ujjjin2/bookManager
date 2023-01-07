@@ -69,7 +69,10 @@ public class BookDelete extends JFrame implements ActionListener{
 		if (btnCancle==obj) {
 			dispose();
 		}else if (btnDelete == obj) {
-			
+			String code = tf.getText();
+			DBbook db = new DBbook();
+			db.bookDelete(code);
+			System.out.println("삭제");
 		}
 		
 	}

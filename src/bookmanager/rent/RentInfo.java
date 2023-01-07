@@ -11,6 +11,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import bookmanager.BookManagement;
+import bookmanager.DBbook;
+
 
 public class RentInfo extends JFrame implements ActionListener{
 	private String[] title = {"대여번호", "회원이름", "회원전화","도서이름","도서번호","날짜"};
@@ -34,8 +37,15 @@ public class RentInfo extends JFrame implements ActionListener{
 		add(paneltop,BorderLayout.NORTH);
 		
 		Table();
+		DBbook db = new DBbook();
+		db.rentinfo(this);
+		
 		setVisible(true);
 		}
+	
+	public DefaultTableModel getModel() {
+		return model;
+	}
 
 		private void Table() {
 			JPanel listPanel = new JPanel();
@@ -63,6 +73,7 @@ public class RentInfo extends JFrame implements ActionListener{
 			Object obj = e.getSource();
 			if (obj == btnback) {
 				dispose();
+				BookManagement BM = new BookManagement("도서 관리 프로그램");
 			}
 			
 		}

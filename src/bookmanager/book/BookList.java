@@ -118,6 +118,10 @@ public class BookList extends JFrame implements ActionListener{
 			BookModify BM = new BookModify("도서정보 수정");
 		}else if (obj == btnDelete) {
 			BookDelete BD = new BookDelete("도서삭제");
+		}else if (obj == btnrefresh) {
+			DBbook db = new DBbook();
+			db.showBook(this);
+			System.out.println("도서 리프레쉬 성공");
 		}
 		
 	}

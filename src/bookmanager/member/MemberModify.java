@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import bookmanager.DBbook;
+
 public class MemberModify extends JFrame implements ActionListener{
 	
 	private JTextField tfName;
@@ -19,6 +21,8 @@ public class MemberModify extends JFrame implements ActionListener{
 	private JTextField tfaddress;
 	private JButton btnBack;
 	private JButton btnModify;
+	private JButton btnSearch;
+	private JTextField tfNum;
 
 	public MemberModify(String title) {
 		setTitle(title);
@@ -31,9 +35,11 @@ public class MemberModify extends JFrame implements ActionListener{
 		JPanel panel1 = new JPanel();
 		JLabel lblNum = new JLabel("회원 주민번호 : ");
 		panel1.add(lblNum);
-		JTextField tfNum = new JTextField(10);
+		tfNum = new JTextField(10);
+		tfNum.addActionListener(this);
 		panel1.add(tfNum);
-		JButton btnSearch = new JButton("검색");
+		btnSearch = new JButton("검색");
+		btnSearch.addActionListener(this);
 		panel1.add(btnSearch);
 		add(panel1, BorderLayout.NORTH);
 		
@@ -98,8 +104,20 @@ public class MemberModify extends JFrame implements ActionListener{
 		Object obj = e.getSource();
 		if (obj == btnBack) {
 			dispose();
+		}else if (obj == btnSearch) {
+			String num = tfNum.getText();
+			DBbook db = new DBbook();
+			db.pullMemberInfo(num, tfName, tfnum, tfphone, tfaddress);
+			System.out.println("멤버 수정-검색누름");
 		}else if (obj == btnModify) {
+			String num = tfNum.getText();
+			String name = tfName.getText();
+			String phone = tfphone.getText();
+			String addr = tfaddress.getText();
 			
+			DBbook db = new DBbook();
+			db.memberUpdate(num,name, phone, addr);
+			System.out.println("회원 수정버튼 누름");
 		}
 		
 	}

@@ -21,6 +21,8 @@ public class BookModify extends JFrame implements ActionListener{
 	private JButton btnModify;
 	private JTextField tfprice;
 	private JTextField tfRent;
+	private JButton btnSearch;
+	private JTextField tfNum;
 
 	public BookModify(String title) {
 		setTitle(title);
@@ -33,9 +35,11 @@ public class BookModify extends JFrame implements ActionListener{
 		JPanel panel1 = new JPanel();
 		JLabel lblNum = new JLabel("도서번호 : ");
 		panel1.add(lblNum);
-		JTextField tfNum = new JTextField(13);
+		tfNum = new JTextField(13);
+		tfNum.addActionListener(this);
 		panel1.add(tfNum);
-		JButton btnSearch = new JButton("검색");
+		btnSearch = new JButton("검색");
+		btnSearch.addActionListener(this);
 		panel1.add(btnSearch);
 		add(panel1, BorderLayout.NORTH);
 		
@@ -120,6 +124,9 @@ public class BookModify extends JFrame implements ActionListener{
 		if (obj == btnBack) {
 			dispose();
 		}else if (obj == btnModify) {
+			
+		}else if (obj == btnSearch) {
+			String code = tfcode.getText();
 			
 		}
 		

@@ -14,6 +14,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import bookmanager.BookManagement;
+import bookmanager.DBbook;
+
 public class Rent_Return_List extends JFrame implements ActionListener {
 	private String[] title = {"대여번호", "제목", "저자","출판사","가격","대출여부"};
 	private String[][] datas = new String[0][6];
@@ -71,26 +74,32 @@ public class Rent_Return_List extends JFrame implements ActionListener {
 		
 		tfcode = new JTextField(15);
 		tfcode.setBounds(120, 0, 100, 20);
+		tfcode.addActionListener(this);
 		panel1_2.add(tfcode);
 		
 		tftitle = new JTextField(15);
 		tftitle.setBounds(320, 0, 100, 20);
+		tftitle.addActionListener(this);
 		panel1_2.add(tftitle);
 		
 		tfauthor = new JTextField(15);
 		tfauthor.setBounds(120, 30, 100, 20);
+		tfauthor.addActionListener(this);
 		panel1_2.add(tfauthor);
 		
 		tfpublisher = new JTextField(15);
 		tfpublisher.setBounds(320, 30, 100, 20);
+		tfpublisher.addActionListener(this);
 		panel1_2.add(tfpublisher);
 		
 		tfprice = new JTextField(15);
 		tfprice.setBounds(120, 60, 100, 20);
+		tfprice.addActionListener(this);
 		panel1_2.add(tfprice);
 		
 		tfRent = new JTextField(15);
 		tfRent.setBounds(320, 60, 100, 20);
+		tfRent.addActionListener(this);
 		panel1_2.add(tfRent);
 		
 		
@@ -101,14 +110,17 @@ public class Rent_Return_List extends JFrame implements ActionListener {
 		
 		btnReset = new JButton("초기화");
 		btnReset.setBounds(100, 95, 80, 25);
+		btnReset.addActionListener(this);
 		panel1_2.add(btnReset);
 		
 		btnrefresh = new JButton("새로고침");
 		btnrefresh.setBounds(185, 95, 90, 25);
+		btnrefresh.addActionListener(this);
 		panel1_2.add(btnrefresh);
 		
 		btnback = new JButton("돌아가기");
 		btnback.setBounds(280, 95, 90, 25);
+		btnback.addActionListener(this);
 		panel1_2.add(btnback);
 		
 		panel1.add(panel1_2);
@@ -118,9 +130,14 @@ public class Rent_Return_List extends JFrame implements ActionListener {
 		add(panel1,BorderLayout.NORTH);
 		
 		table();
+		DBbook db = new DBbook();
+		db.showBookRR(this);
 		
 		setVisible(true);
 		}
+	public DefaultTableModel getModel() {
+		return model;
+	}
 
 		private void table() {
 			JPanel listPanel = new JPanel();
@@ -138,6 +155,7 @@ public class Rent_Return_List extends JFrame implements ActionListener {
 			add(listPanel, BorderLayout.CENTER);
 		
 	}
+		
 
 		public static void main(String[] args) {
 			Rent_Return_List RR = new Rent_Return_List("도서대여/반납");
@@ -150,6 +168,11 @@ public class Rent_Return_List extends JFrame implements ActionListener {
 				Rent_Return rr = new Rent_Return("대여/반납");
 			}else if (obj ==btnback) {
 				dispose();
+				BookManagement mg = new BookManagement("도서 관리 프로그램");
+			}else if (obj ==btnrefresh) {
+				DBbook db = new DBbook();
+				db.showBookRR(this);
+				System.out.println("도서 대여/반납 새로고침");
 			}
 			
 		}

@@ -115,6 +115,10 @@ public class MemberList extends JFrame implements ActionListener{
 			MemberModify MM = new MemberModify("회원정보 수정");
 		}else if (obj == btnDelete) {
 			MemberDelete MD = new MemberDelete("회원삭제");
+		}else if (obj == btnrefresh) {
+			DBbook db = new DBbook();
+			db.showRank(this);
+			System.out.println("새로고침 적용");
 		}
 		
 	}

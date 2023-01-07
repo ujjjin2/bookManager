@@ -120,13 +120,16 @@ public class BookRegister extends JFrame implements ActionListener{
 		if (obj == btnCancle) {
 			dispose();
 		}else if (obj == btnOK) {
-			String name = tfcode.getText();
-			String num = tftitle.getText();
-			String phone = tfauthor.getText();
-			String addr = tfpublisher.getText();
+			String code = tfcode.getText();
+			String title = tftitle.getText();
+			String author = tfauthor.getText();
+			String publisher = tfpublisher.getText();
+			String price = tfprice.getText();
+			String rent = tfRent.getText();
 			
-//			DBbook db = new DBbook();
-//			db.memberRegister(name, num, phone, addr);
+			DBbook db = new DBbook();
+			db.BookRegister(code, title, author, publisher, price, rent);
+			
 			
 		}
 		
