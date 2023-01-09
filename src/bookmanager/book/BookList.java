@@ -22,6 +22,7 @@ import javax.swing.table.TableColumnModel;
 
 import bookmanager.BookManagement;
 import bookmanager.DBbook;
+import bookmanager.member.MemberList;
 
 
 public class BookList extends JFrame implements ActionListener{
@@ -110,7 +111,7 @@ public class BookList extends JFrame implements ActionListener{
 		if (obj == btnRegister) {
 			BookRegister BR = new BookRegister("도서등록");
 		}else if (obj ==btnCheck) {
-			BookSearch BS = new BookSearch("도서검색");
+			BookSearch BS = new BookSearch("도서검색",this);
 		}else if (obj ==btnBack) {
 			dispose();
 			BookManagement bk = new BookManagement("도서관리프로그램");
@@ -124,5 +125,10 @@ public class BookList extends JFrame implements ActionListener{
 			System.out.println("도서 리프레쉬 성공");
 		}
 		
+	}
+	
+	public void SearchBookList(BookList bookList, String title) {
+		DBbook db = new DBbook();
+		db.bookSearch(this, title);
 	}
 }

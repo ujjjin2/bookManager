@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import bookmanager.DBbook;
+
 public class BookModify extends JFrame implements ActionListener{
 	
 	private JTextField tfcode;
@@ -124,10 +126,20 @@ public class BookModify extends JFrame implements ActionListener{
 		if (obj == btnBack) {
 			dispose();
 		}else if (obj == btnModify) {
+			String CODE = tfNum.getText();
+			String title = tftt.getText();
+			String author = tfauthor.getText();
+			String publisher = tfpublisher.getText();
+			String price = tfprice.getText();
+			String rent = tfRent.getText();
+			DBbook db = new DBbook();
+			db.BookUpdate(CODE, title, author, publisher, price, rent);
 			
 		}else if (obj == btnSearch) {
-			String code = tfcode.getText();
-			
+			String code = tfNum.getText();
+			DBbook db = new DBbook();
+			db.pullBookInfo(code, tfcode, tftt, tfauthor, tfpublisher, tfprice, tfRent);
+			System.out.println("도서 수정-검색누름");
 		}
 		
 	}

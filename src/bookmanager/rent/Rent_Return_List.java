@@ -42,8 +42,10 @@ public class Rent_Return_List extends JFrame implements ActionListener {
 		JLabel lbl = new JLabel("도서명");
 		panel1_1.add(lbl);
 		tfbook = new JTextField(10);
+		tfbook.addActionListener(this);
 		panel1_1.add(tfbook);
 		btnsearch = new JButton("검색");
+		btnsearch.addActionListener(this);
 		panel1_1.add(btnsearch);
 		
 		JPanel panel1_2 = new JPanel();
@@ -173,6 +175,19 @@ public class Rent_Return_List extends JFrame implements ActionListener {
 				DBbook db = new DBbook();
 				db.showBookRR(this);
 				System.out.println("도서 대여/반납 새로고침");
+			}else if (obj == btnsearch) {
+				String title = tfbook.getText();
+				DBbook db = new DBbook();
+				db.pullReturnInfo(title, tfcode, tftitle, tfauthor, tfpublisher, tfprice, tfRent);
+				System.out.println("도서 대여/반납 도서명 검색");
+			}else if (obj ==btnReset) {
+				tfbook.setText("");
+				tfcode.setText("");
+				tftitle.setText("");
+				tfauthor.setText("");
+				tfpublisher.setText("");
+				tfprice.setText("");
+				tfRent.setText("");
 			}
 			
 		}

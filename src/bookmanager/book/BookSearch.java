@@ -20,7 +20,8 @@ public class BookSearch extends JFrame implements ActionListener{
 	private JTextField tf;
 	BookList booklist;
 
-	public BookSearch(String title) {
+	public BookSearch(String title,BookList bookList) {
+		this.booklist = bookList;
 		setTitle(title);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(300, 100);
@@ -58,9 +59,9 @@ public class BookSearch extends JFrame implements ActionListener{
 	}
 	
 	
-	public static void main(String[] args) {
-		BookSearch mb= new BookSearch("도서검색");
-	}
+//	public static void main(String[] args) {
+//		BookSearch mb= new BookSearch("도서검색",null);
+//	}
 
 
 	@Override
@@ -69,9 +70,8 @@ public class BookSearch extends JFrame implements ActionListener{
 		if (btnCancle==obj) {
 			dispose();
 		}else if (btnSearch == obj) {
-			String num = tf.getText();
-			DBbook db = new DBbook();
-			//db.memberSearch(booklist, num);
+			String title = tf.getText();
+			booklist.SearchBookList(booklist, title);
 			JOptionPane.showMessageDialog(null,"검색이 완료되었습니다.","메세지",JOptionPane.INFORMATION_MESSAGE);
 		}
 		

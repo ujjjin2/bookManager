@@ -16,6 +16,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import bookmanager.DBbook;
+
 public class Rent_Return extends JFrame implements ActionListener{
 	
 	private JTextField tfnum;
@@ -43,10 +45,13 @@ public class Rent_Return extends JFrame implements ActionListener{
 	JLabel lblnum = new JLabel("회원주민번호");
 	panel1.add(lblnum);
 	tfnum = new JTextField(15);
+	tfnum.addActionListener(this);
 	panel1.add(tfnum);
 	btnRent = new JButton("대여");
+	btnRent.addActionListener(this);
 	panel1.add(btnRent);
 	btnReturn = new JButton("반납");
+	btnReturn.addActionListener(this);
 	panel1.add(btnReturn);
 	btnCancle = new JButton("취소");
 	btnCancle.addActionListener(this);
@@ -58,10 +63,12 @@ public class Rent_Return extends JFrame implements ActionListener{
 	JLabel lblcode = new JLabel("도서번호");
 	panel2.add(lblcode);
 	tfcode = new JTextField(15);
+	tfcode.addActionListener(this);
 	panel2.add(tfcode);
 	JLabel lbltt = new JLabel("제목");
 	panel2.add(lbltt);
 	tftitle = new JTextField(15);
+	tftitle.addActionListener(this);
 	panel2.add(tftitle);
 	panelUp.add(panel2, BorderLayout.SOUTH);
 	
@@ -101,6 +108,24 @@ public class Rent_Return extends JFrame implements ActionListener{
 		Object obj = e.getSource();
 		if (obj == btnCancle) {
 			dispose();
+		}else if (obj == btnRent) {
+			String num = tfnum.getText();
+			String code = tfcode.getText();
+			String title = tftitle.getText();
+			
+			DBbook db = new DBbook();
+			db.RentBook(num, code, title,this);
+			//db.Rentlist(this,code);
+			System.out.println("대여/반납 - 대여 버튼 누름");
+			
+		}else if (obj == btnReturn) {
+			String num = tfnum.getText();
+			String code = tfcode.getText();
+			String title = tftitle.getText();
+			
+			DBbook db = new DBbook();
+			db.ReturnBook(num,code,title);
+			System.out.println("대여/반납 - 반납 버튼 누름");
 		}
 		
 	}

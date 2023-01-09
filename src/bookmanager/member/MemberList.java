@@ -43,6 +43,10 @@ public class MemberList extends JFrame implements ActionListener{
 		setSize(480, 525);
 		setLayout(new BorderLayout());
 		
+		table();
+		DBbook db = new DBbook();
+		db.showRank(this);
+		
 		JPanel panelButton = new JPanel();
 		//새로고침
 		btnrefresh = new JButton("새로고침");
@@ -70,9 +74,6 @@ public class MemberList extends JFrame implements ActionListener{
 		panelButton.add(btnBack);
 		add(panelButton, BorderLayout.NORTH);
 		
-		table();
-		DBbook db = new DBbook();
-		db.showRank(this);
 		
 		setVisible(true);
 	}
@@ -107,7 +108,7 @@ public class MemberList extends JFrame implements ActionListener{
 		if (obj == btnRegister) {
 			MemberRegister MR = new MemberRegister("회원등록");
 		}else if (obj ==btnCheck) {
-			MemberSearch MS = new MemberSearch("회원검색");
+			MemberSearch MS = new MemberSearch("회원검색",this);
 		}else if (obj ==btnBack) {
 			dispose();
 			BookManagement bk = new BookManagement("도서관리프로그램");
@@ -121,5 +122,10 @@ public class MemberList extends JFrame implements ActionListener{
 			System.out.println("새로고침 적용");
 		}
 		
+	}
+	
+	public void SearchList(MemberList memberlist, String num) {
+		DBbook db = new DBbook();
+		db.memberSearch(this, num);
 	}
 }

@@ -18,9 +18,10 @@ import bookmanager.DBbook;
 public class MemberSearch extends JFrame implements ActionListener{
 	private JButton btnSearch,btnCancle;
 	private JTextField tf;
-	
+	private MemberList memberlist;
 
-	public MemberSearch(String title) {
+	public MemberSearch(String title,MemberList memberlist) {
+		this.memberlist = memberlist;
 		setTitle(title);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(300, 100);
@@ -59,7 +60,7 @@ public class MemberSearch extends JFrame implements ActionListener{
 	
 	
 	public static void main(String[] args) {
-		MemberSearch mb= new MemberSearch("회원등록");
+		MemberSearch mb= new MemberSearch("회원등록",null);
 	}
 
 
@@ -70,8 +71,7 @@ public class MemberSearch extends JFrame implements ActionListener{
 			dispose();
 		}else if (btnSearch == obj) {
 			String num = tf.getText();
-			DBbook db = new DBbook();
-			db.memberSearch(MemberList.class, num);
+			memberlist.SearchList(memberlist,num);
 			JOptionPane.showMessageDialog(null,"검색이 완료되었습니다.","메세지",JOptionPane.INFORMATION_MESSAGE);
 			//MemberList ml = new MemberList("회원목록");
 		}
